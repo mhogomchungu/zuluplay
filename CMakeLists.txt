@@ -69,7 +69,7 @@ target_link_libraries(zuluplay-so ${GCRYPT_LIB} ${DEVMAPPER_LDFLAGS} ${UUID_LDFL
 # Generate pkg-config file zuluplay.pc
 file(WRITE ${PROJECT_BINARY_DIR}/zuluplay.pc "prefix=${CMAKE_INSTALL_PREFIX}
 exec_prefix=${CMAKE_INSTALL_PREFIX}
-libdir=${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}
+libdir=${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
 includedir=${CMAKE_INSTALL_PREFIX}/include
 
 Name: libzuluplay
@@ -89,7 +89,7 @@ install(TARGETS zuluplay-bin zuluplay-so
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib-dev
 )
 
-install(FILES ${PROJECT_BINARY_DIR}/zuluplay.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig COMPONENT lib-dev)
+install(FILES ${PROJECT_BINARY_DIR}/zuluplay.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig COMPONENT lib-dev)
 
 install(FILES zuluplay_api.h DESTINATION include        COMPONENT lib-dev)
 install(FILES zuluplay.3     DESTINATION share/man/man3 COMPONENT lib-dev)
