@@ -36,7 +36,7 @@
 #include<dirent.h>
 
 #include "tcplay.h"
-#include "tcplay_api.h"
+#include "zuluplay_api.h"
 #include "tcplay_api_internal.h"
 
 

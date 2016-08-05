@@ -58,7 +58,7 @@
 #include "crc32.h"
 #include "tcplay.h"
 #include "humanize.h"
-#include "tcplay_api.h"
+#include "zuluplay_api.h"
 
 /* XXX TODO:
  *  - LRW-benbi support? needs further work in dm-crypt and even opencrypto
