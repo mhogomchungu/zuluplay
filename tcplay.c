@@ -44,10 +44,10 @@
 #include <string.h>
 #include <err.h>
 #include <time.h>
-#include <sys/sysmacros.h>
 #if defined(__linux__)
 #include <libdevmapper.h>
 #include <uuid/uuid.h>
+#include <sys/sysmacros.h>
 #elif defined(__DragonFly__)
 #include <libdm.h>
 #include <uuid.h>
