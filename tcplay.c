@@ -44,6 +44,7 @@
 #include <string.h>
 #include <err.h>
 #include <time.h>
+#include <sys/sysmacros.h>
 #if defined(__linux__)
 #include <libdevmapper.h>
 #include <uuid/uuid.h>
