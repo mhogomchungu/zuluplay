@@ -362,7 +362,7 @@ main(int argc, char *argv[])
 			_set_str_opt(map_name);
 			break;
 		case 'v':
-			printf("tcplay v%d.%d\n", MAJ_VER, MIN_VER);
+			printf("zuluplay v%d.%d\n", MAJ_VER, MIN_VER);
 			exit(EXIT_SUCCESS);
 			/* NOT REACHED */
 		case 'w':
