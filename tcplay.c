@@ -1198,7 +1198,7 @@ modify_volume(struct tcplay_opts *opts)
 	info = NULL;
 
 	if (TC_FLAG_SET(opts->flags, ONLY_RESTORE)) {
-		if (opts->interactive) {		printf( "--****--%d----\n",opts->iteration_count);
+		if (opts->interactive) {
 
 			if ((pass = alloc_safe_mem(PASS_BUFSZ)) == NULL) {
 				tc_log(1, "could not allocate safe "
