@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.6)
 
 project (zuluplay)
 set (VERSION_MAJOR 1)
-set (VERSION_MINOR 1)
+set (VERSION_MINOR 3)
 
 find_package (PkgConfig)
 include (CheckLibraryExists)
@@ -96,6 +96,14 @@ Libs.private: -lgpg-error -lgcrypt
 Cflags: -I\${includedir}
 ")
 
+# uninstall target
+configure_file(
+	"${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+	IMMEDIATE @ONLY )
+
+add_custom_target( uninstall
+COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake )
 
 # Installation targets
 install(TARGETS zuluplay-bin zuluplay-so

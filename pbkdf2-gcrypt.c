@@ -40,18 +40,20 @@
 
 #include "tcplay.h"
 
+extern int zuluCryptIterationCount ;
+
 static
 int
 get_gcrypt_hash_id(struct pbkdf_prf_algo *hash)
 {
-	if	(strcmp(hash->name, "RIPEMD160") == 0)
+	if	(strcmp(hash->algo, "RIPEMD160") == 0)
 		return GCRY_MD_RMD160;
-	else if (strcmp(hash->name, "SHA512") == 0)
+	else if (strcmp(hash->algo, "SHA512") == 0)
 		return GCRY_MD_SHA512;
-	else if	(strcmp(hash->name, "whirlpool") == 0)
-		return GCRY_MD_WHIRLPOOL;
-	else if (strcmp(hash->name, "SHA256") == 0)
+	else if (strcmp(hash->algo, "SHA256") == 0)
 		return GCRY_MD_SHA256;
+	else if	(strcmp(hash->algo, "whirlpool") == 0)
+		return GCRY_MD_WHIRLPOOL;
 	else
 		return -1;
 }
@@ -59,13 +61,20 @@ get_gcrypt_hash_id(struct pbkdf_prf_algo *hash)
 int
 pbkdf2(struct pbkdf_prf_algo *hash, const char *pass, int passlen,
     const unsigned char *salt, int saltlen,
-    int keylen, unsigned char *out)
+    int keylen, int iteration_count,unsigned char *out)
 {
 	gpg_error_t err;
 
+	int iter ;
+
+	if (iteration_count)
+		iter = iteration_count ;
+	else
+		iter = hash->iteration_count ;	
+
 	err = gcry_kdf_derive(pass, passlen, GCRY_KDF_PBKDF2,
 	    get_gcrypt_hash_id(hash),
-            salt, saltlen, hash->iteration_count, keylen, out);
+	    salt, saltlen, iter, keylen, out);
 
 	if (err) {
 		tc_log(1, "Error in PBKDF2\n");
